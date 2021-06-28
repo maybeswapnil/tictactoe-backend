@@ -31,4 +31,8 @@ public class TictactoeServiceImpl implements TictactoeService {
     public Boolean setPoints(Integer Id, Integer points) throws Exception {
         return tictactoeDAO.setPoints(Id, points);
     }
+
+    public TictactoeBean setDetails(String name, String password) throws Exception {
+        return tictactoeDAO.setDetails(name, password);
+    }
 }

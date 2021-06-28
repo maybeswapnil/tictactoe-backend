@@ -10,4 +10,6 @@ public interface TictactoeService {
     Boolean setHighScore(Integer Id, Integer highScore) throws Exception;
 
     Boolean setPoints(Integer Id, Integer points) throws Exception;
+
+    TictactoeBean setDetails(String name, String password) throws Exception;
 }

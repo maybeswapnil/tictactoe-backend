@@ -1,7 +1,6 @@
 package com.hellochemo.dao;
 
 import com.hellochemo.bean.TictactoeBean;
-import com.hellochemo.bean.TictactoeBean;
 import com.hellochemo.entity.TictactoeEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
@@ -92,6 +91,30 @@ public class TictactoeDAOImpl implements TictactoeDAO{
             return true;
         }
         return false;
+    }
+
+    public TictactoeBean setDetails(String name, String password) throws Exception {
+        TictactoeBean tictactoeBean = null;
+        try {
+            TictactoeBean bean = new TictactoeBean();
+            bean.setName(name);
+            bean.setuPass(password);
+            bean.setPoints(0);
+            bean.setHighScore(0);
+            bean.setSession(0);
+            TictactoeEntity tictactoeEntity = convertBeanToEntity(bean);
+            entityManager.persist(tictactoeEntity);
+            if(tictactoeEntity!=null){
+                tictactoeBean=convertEntityToBean(tictactoeEntity);
+                return tictactoeBean;
+            }
+
+            return bean;
+
+        } catch (Exception exception) {
+
+            throw exception;
+        }
     }
 
 

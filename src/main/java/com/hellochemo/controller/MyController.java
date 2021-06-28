@@ -61,7 +61,6 @@ public class MyController {
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Access-Control-Allow-Origin",
                     "*");
-
             return ResponseEntity.ok()
                     .headers(responseHeaders)
                     .body(out);
@@ -97,6 +96,20 @@ public class MyController {
         return ResponseEntity.ok()
                 .headers(responseHeaders)
                 .body(tictactoeService.setPoints(Id, points));
+    }
+
+    @GetMapping(value="/setDetails")
+    public ResponseEntity<TictactoeBean> setDetails(@RequestParam String name, @RequestParam String password) throws Exception {
+        TictactoeService tictactoeService=null;
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
+        tictactoeService = (TictactoeService) applicationContext.getBean("tictactoeServiceImpl");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin",
+                "*");
+
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(tictactoeService.setDetails(name, password));
     }
 
     @GetMapping(value="/login")
